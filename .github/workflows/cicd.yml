@@ -23,9 +23,9 @@ jobs:
         run: echo ::set-env name=IMAGE_TAG::$(echo ${GITHUB_SHA:0:7})
 
       - name: Build Docker image
-        run: docker build -t madhav01/flaskapp:${{ env.IMAGE_TAG }} .
+        run: docker build -t madhav01/flaskapp:${{ github.sha }} .
 
       - name: Push Docker image to Docker Hub
-        run: docker push madhav01/flaskapp:${{ env.IMAGE_TAG }}
+        run: docker push madhav01/flaskapp:${{ github.sha }}
 
 
