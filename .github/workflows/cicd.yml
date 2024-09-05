@@ -19,11 +19,15 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           
+      - name: Get Short SHA
+        id: get_short_sha
+        run: echo "SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
+        
       - name: Build Docker image
-        run: docker build -t madhav01/flaskapp:${{ github.sha }} .
+        run: docker build -t madhav01/flaskapp:$SHORT_SHA .
 
       - name: Push Docker image to Docker Hub
-        run: docker push madhav01/flaskapp:${{ github.sha }}
+        run: docker push madhav01/flaskapp:$SHORT_SHA
 
 
 
