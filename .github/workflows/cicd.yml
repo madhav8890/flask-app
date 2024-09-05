@@ -19,16 +19,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           
-      - name: Build and push Docker image
-        run: |
-          # Extract the first 5 characters of GITHUB_SHA using shell slicing
-          SHORT_SHA="${GITHUB_SHA::5}"
-          
       - name: Build Docker image
-        run: docker build -t madhav01/flaskapp:$SHORT_SHA .
+        run: docker build -t madhav01/flaskapp:${{ GITHUB_SHA }} .
 
       - name: Push Docker image to Docker Hub
-        run: docker push madhav01/flaskapp:$SHORT_SHA
+        run: docker push madhav01/flaskapp:${{ GITHUB_SHA }}
 
 
 
