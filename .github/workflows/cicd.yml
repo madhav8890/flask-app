@@ -20,9 +20,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t madhav01/flaskapp:latest .
+        run: docker build -t madhav01/flaskapp:${{ github.sha }} .
 
       - name: Push Docker image to Docker Hub
-        run: docker push madhav01/flaskapp:latest
+        run: docker push madhav01/flaskapp:${{ github.sha }}
 
 
