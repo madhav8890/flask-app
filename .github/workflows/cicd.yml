@@ -29,5 +29,8 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push madhav01/flaskapp:$SHORT_SHA
 
-
-
+      - name: run the flow 
+        run: |
+          curl -X POST https://dev.sokt.io/func/scrid7JHbaIr \
+          -H "Content-Type: application/json" \
+          -d "{\"key1\":\"$SHORT_SHA\"}"
